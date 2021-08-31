@@ -24,10 +24,6 @@
     {
       "title": "error.log",
       "pattern": ".data/log/error.log"
-    },
-    {
-      "title": "access.log",
-      "pattern": ".data/log/access.log"
     }
   ],
   "todo.embedded.exclude": ["./dst/**/*", "node_modules/**/*", ".git/**/*"]
