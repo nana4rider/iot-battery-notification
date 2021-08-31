@@ -1,0 +1,21 @@
+# default
+timeout: 10000
+warningThreshold: 10
+useTasks:
+  - flic
+  - switchbot
+  - ewelink
+  - hue
+batteryTypeNames:
+  unknown: 不明
+  aa: 単3電池
+  aaa: 単4電池
+  cr2: CR2
+  cr2016: CR2016
+  cr2032: CR2032
+flic:
+  host: 192.168.1.31
+  deviceNames:
+    "AG46-B05941": 玄関ドアのボタン
+hue:
+  host: 192.168.1.158

@@ -1,0 +1,39 @@
+{
+  "name": "iot-battery-notification",
+  "version": "0.1.0",
+  "main": "app.js",
+  "private": true,
+  "dependencies": {
+    "@types/config": "^0.0.39",
+    "axios": "^0.21.1",
+    "config": "^3.3.6",
+    "dotenv": "^10.0.0",
+    "ewelink-api": "^3.1.1",
+    "fliclib-js": "git+https://github.com/nana4rider/fliclib-js.git",
+    "log4js": "^6.3.0",
+    "node-hue-api": "^5.0.0-beta.8",
+    "node-switchbot": "^1.0.6"
+  },
+  "devDependencies": {
+    "@types/node": "^16.7.5",
+    "@typescript-eslint/eslint-plugin": "^4.29.3",
+    "@typescript-eslint/parser": "^4.29.3",
+    "eslint": "^7.32.0",
+    "typescript": "^4.4.2"
+  },
+  "scripts": {
+    "start": "npm run build && npm run serve",
+    "build": "npx tsc",
+    "serve": "node -r dotenv/config dst/app.js"
+  },
+  "author": "nana4rider",
+  "engines": {
+    "node": "16.5.0",
+    "npm": "7.19.1"
+  },
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nana4rider/iot-battery-notification.git"
+  }
+}
