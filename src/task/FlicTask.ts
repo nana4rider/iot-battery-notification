@@ -38,7 +38,7 @@ export class FlicTask extends BaseTask {
         const fsl = new FlicBatteryStatusListener(macAddress);
         this.client.addBatteryStatusListener(fsl);
         fsl.on('batteryStatus', (batteryPercentage: number, timestamp: Date) => {
-          logger.info('Flic Timestamp:', serialNumber, timestamp);
+          logger.debug('Flic Timestamp:', serialNumber, timestamp);
 
           this.addStatus({
             id: macAddress,
