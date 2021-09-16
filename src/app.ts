@@ -68,7 +68,7 @@ void Promise.allSettled(targetTasks).then(async settledResults => {
     message = `@everyone バッテリー残量が${threshold}%を切っている端末があります\n` + message;
   }
 
-  console.log({ content: message });
+  console.log(JSON.stringify({ content: message }));
 
   exit(0);
 });
