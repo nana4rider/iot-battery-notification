@@ -1,4 +1,3 @@
-import axios from 'axios';
 import config from 'config';
 import * as log4js from 'log4js';
 import { env, exit } from 'process';
@@ -69,11 +68,7 @@ void Promise.allSettled(targetTasks).then(async settledResults => {
     message = `@everyone バッテリー残量が${threshold}%を切っている端末があります\n` + message;
   }
 
-  if (env.WEBHOOK_URL) {
-    await axios.post(env.WEBHOOK_URL, { content: message });
-  } else {
-    console.log(message);
-  }
+  console.log({ content: message });
 
   exit(0);
 });
