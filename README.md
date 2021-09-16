@@ -4,7 +4,7 @@ IoT機器からバッテリー残量を集計し通知する
 
 ## 実行方法
 ```sh
-npm run serve
+npm run --silent serve
 ```
 
 ## 出力

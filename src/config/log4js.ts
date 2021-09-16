@@ -33,7 +33,7 @@ configures.production = {
   appenders: appenders,
   categories: {
     default: {
-      appenders: ['error', 'console', 'system'],
+      appenders: ['error', 'system'],
       level: 'INFO'
     }
   }
