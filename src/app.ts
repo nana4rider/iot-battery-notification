@@ -1,6 +1,6 @@
 import config from 'config';
 import * as log4js from 'log4js';
-import { env, exit } from 'process';
+import { env } from 'process';
 import * as log4jconfig from './config/log4js';
 import { eWeLinkTask } from './task/eWeLinkTask';
 import { FlicTask } from './task/FlicTask';
@@ -9,13 +9,19 @@ import { SwitchBotTask } from './task/SwitchBotTask';
 
 if (!env.NODE_ENV) throw new Error('NODE_ENV is empty.');
 
+function exit(data: any, code = 0) {
+  console.log(JSON.stringify({ ...data, code }));
+  process.exit(code);
+}
+
 // log4js
 log4js.configure(log4jconfig.configures[env.NODE_ENV]);
 const logger = log4js.getLogger();
 
 process.on('unhandledRejection', (reason, p) => {
-  logger.error('Unhandled Rejection at:', p, 'reason:', reason);
-  exit(1);
+  const message = `Unhandled Rejection at: ${p} reason: ${reason}`;
+  logger.error(message);
+  exit({ content: message }, 1);
 });
 
 const tasks = {
@@ -68,7 +74,5 @@ void Promise.allSettled(targetTasks).then(async settledResults => {
     message = `@everyone バッテリー残量が${threshold}%を切っている端末があります\n` + message;
   }
 
-  console.log(JSON.stringify({ content: message }));
-
-  exit(0);
+  exit({ content: message });
 });
