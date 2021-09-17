@@ -1,6 +1,6 @@
+import config from 'config';
 import ewelink from 'ewelink-api';
 import * as log4js from 'log4js';
-import { env } from 'process';
 import { BaseTask, BatteryInfo } from './BaseTask';
 
 const logger = log4js.getLogger();
@@ -15,11 +15,9 @@ export class eWeLinkTask extends BaseTask {
   }
 
   async process(finish: () => void): Promise<void> {
-    if (!env.EWELINK_EMAIL || !env.EWELINK_PASSWORD) throw new Error('E-Mail or Password is empty.');
-
     const client = new ewelink({
-      email: env.EWELINK_EMAIL,
-      password: env.EWELINK_PASSWORD
+      email: config.get('ewelink.email'),
+      password: config.get('ewelink.password')
     });
 
     const devices = await client.getDevices();

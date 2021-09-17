@@ -1,0 +1,11 @@
+# env
+env: NODE_ENV
+ewelink:
+  email: EWELINK_EMAIL
+  password: EWELINK_PASSWORD
+hue:
+  clientId: HUE_CLIENT_ID
+switchbot:
+  token: SWITCH_BOT_TOKEN
+webhook:
+  url: WEBHOOK_URL

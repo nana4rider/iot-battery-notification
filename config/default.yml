@@ -1,6 +1,10 @@
 # default
 timeout: 10000
 warningThreshold: 10
+webhook:
+  mention: "@everyone"
+  # Discord:content Slack:text
+  requestKey: content
 useTasks:
   - flic
   - switchbot
@@ -14,10 +18,12 @@ batteryTypeNames:
   cr2016: CR2016
   cr2032: CR2032
 flic:
+  # flicd
   hosts:
     - 192.168.1.30
     - 192.168.1.31
   deviceNames:
     "AG46-B05941": 玄関ドアのボタン
 hue:
+  # bridge
   host: 192.168.1.158

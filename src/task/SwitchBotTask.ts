@@ -1,7 +1,8 @@
 import axios from 'axios';
+import config from 'config';
 import * as log4js from 'log4js';
-import { env } from 'process';
 import { BaseTask, BatteryInfo } from './BaseTask';
+
 
 const Switchbot = require('node-switchbot');
 const logger = log4js.getLogger();
@@ -33,7 +34,7 @@ export class SwitchBotTask extends BaseTask {
 
   async process(finish: () => void): Promise<void> {
     const response = await axios.get('https://api.switch-bot.com/v1.0/devices', {
-      headers: { 'Authorization': env.SWITCH_BOT_TOKEN }
+      headers: { 'Authorization': config.get('switchbot.token') }
     });
 
     const allDevices = response.data.body.deviceList as Device[];

@@ -1,6 +1,5 @@
 import config from 'config';
 import { api } from 'node-hue-api';
-import { env } from 'process';
 import { BaseTask, BatteryInfo } from './BaseTask';
 
 const batteryInfo: BatteryInfo = { type: 'aaa', quantity: 2 };
@@ -11,7 +10,7 @@ export class HueTask extends BaseTask {
   }
 
   async process(finish: () => void): Promise<void> {
-    const hueApi = await api.createLocal(config.get('hue.host')).connect(env.HUE_CLIENT_ID);
+    const hueApi = await api.createLocal(config.get('hue.host')).connect(config.get('hue.clientId'));
     const sensors = await hueApi.sensors.getAll();
 
     for (const sensor of sensors) {

@@ -1,27 +1,20 @@
+import axios from 'axios';
 import config from 'config';
 import * as log4js from 'log4js';
-import { env } from 'process';
+import { exit } from 'process';
 import * as log4jconfig from './config/log4js';
 import { eWeLinkTask } from './task/eWeLinkTask';
 import { FlicTask } from './task/FlicTask';
 import { HueTask } from './task/HueTask';
 import { SwitchBotTask } from './task/SwitchBotTask';
 
-if (!env.NODE_ENV) throw new Error('NODE_ENV is empty.');
-
-function exit(data: any, code = 0) {
-  console.log(JSON.stringify({ ...data, code }));
-  process.exit(code);
-}
-
 // log4js
-log4js.configure(log4jconfig.configures[env.NODE_ENV]);
+log4js.configure(log4jconfig.configures[config.get('env') as string]);
 const logger = log4js.getLogger();
 
 process.on('unhandledRejection', (reason, p) => {
-  const message = `Unhandled Rejection at: ${p} reason: ${reason}`;
-  logger.error(message);
-  exit({ content: message }, 1);
+  logger.error('Unhandled Rejection at:', p, 'reason:', reason);
+  exit(1);
 });
 
 const tasks = {
@@ -71,8 +64,17 @@ void Promise.allSettled(targetTasks).then(async settledResults => {
 
   const threshold: number = config.get('warningThreshold');
   if (min <= threshold) {
-    message = `@everyone バッテリー残量が${threshold}%を切っている端末があります\n` + message;
+    const mention: string = config.get('webhook.mention');
+    message = `${mention} バッテリー残量が${threshold}%を切っている端末があります\n` + message;
   }
 
-  exit({ content: message });
+  if (config.has('webhook.url')) {
+    const contentKey: string = config.get('webhook.requestKey');
+    const url: string = config.get('webhook.url');
+    await axios.post(url, { [contentKey]: message });
+  } else {
+    console.log(message);
+  }
+
+  exit(0);
 });
