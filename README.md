@@ -16,6 +16,9 @@ IoT機器からバッテリー残量を集計し、Webhookで通知する
 
 `config/default.yml`を開き、`useTasks`の利用しないタスクをコメントアウトする。
 
+SwitchBotタスクを利用する場合、下記コマンドを実行する必要があります。  
+https://github.com/noble/noble#running-on-linuxsudo
+
 ## 実行方法
 ```bash
 ./execute.sh
