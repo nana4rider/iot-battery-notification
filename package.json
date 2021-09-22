@@ -27,10 +27,6 @@
     "serve": "node -r dotenv/config dst/app.js"
   },
   "author": "nana4rider",
-  "engines": {
-    "node": "16.5.0",
-    "npm": "7.19.1"
-  },
   "license": "ISC",
   "repository": {
     "type": "git",
