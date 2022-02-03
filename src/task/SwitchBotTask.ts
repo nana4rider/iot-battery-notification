@@ -38,8 +38,7 @@ export class SwitchBotTask extends BaseTask {
     });
 
     const allDevices = response.data.body.deviceList as Device[];
-    // Hubはバッテリー駆動ではないので除外
-    const devices = allDevices.filter(device => !device.deviceType.includes('Hub'));
+    const devices = allDevices.filter(device => batteryInfoMap[device.deviceType]);
 
     await this.switchbot.startScan();
 
