@@ -6,6 +6,7 @@ IoT機器からバッテリー残量を集計し、Webhookで通知する
 * [SONOFF SNZB-04 – ZigBee Wireless door/window sensor](https://itead.cc/product/sonoff-snzb-04-zigbee-wireless-door-window-sensor/)
 * [Flic](https://flic.io/)
 * [Philips Hue モーション センサー](https://www.philips-hue.com/ja-jp/p/hue-motion-sensor/8718696769881)
+* [Philips Hue スマートボタン](https://www.philips-hue.com/ja-jp/p/hue-smart-button/8719514342682)
 * [SwitchBot ボット](https://www.switchbot.jp/products/switchbot-bot)
 * [SwitchBot 温湿度計](https://www.switchbot.jp/products/switchbot-meter)
 

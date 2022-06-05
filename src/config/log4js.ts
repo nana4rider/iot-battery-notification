@@ -39,11 +39,11 @@ configures.production = {
   }
 };
 
-function dateFile(fileName: string, daysToKeep: number): DateFileAppender {
+function dateFile(fileName: string, numBackups: number): DateFileAppender {
   return {
     type: 'dateFile',
     filename: `${baseLogDir}/${fileName}`,
     pattern: '-yyyy-MM-dd',
-    daysToKeep: daysToKeep
+    numBackups: numBackups
   };
 }
