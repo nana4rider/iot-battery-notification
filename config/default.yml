@@ -1,5 +1,5 @@
 # default
-timeout: 20000
+timeout: 30000
 warningThreshold: 10
 webhook:
   mention: "@everyone"
