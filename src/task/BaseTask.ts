@@ -4,7 +4,7 @@ import * as log4js from 'log4js';
 const logger = log4js.getLogger();
 const timeout: number = config.get('timeout');
 
-type BatteryType = 'unknown' | 'aa' | 'aaa' | 'cr2' | 'cr2016' | 'cr2032';
+type BatteryType = 'unknown' | 'internal' | 'aa' | 'aaa' | 'cr2' | 'cr2016' | 'cr2032';
 
 type TaskResult = {
   type: string;

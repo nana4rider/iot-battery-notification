@@ -9,6 +9,7 @@ IoT機器からバッテリー残量を集計し、Webhookで通知する
 * [Philips Hue スマートボタン](https://www.philips-hue.com/ja-jp/p/hue-smart-button/8719514342682)
 * [SwitchBot ボット](https://www.switchbot.jp/products/switchbot-bot)
 * [SwitchBot 温湿度計](https://www.switchbot.jp/products/switchbot-meter)
+* [SwitchBot カーテン](https://www.switchbot.jp/products/switchbot-curtain)
 
 ## 初期設定
 `.env.sample`をコピーし、`.env`にリネームする。

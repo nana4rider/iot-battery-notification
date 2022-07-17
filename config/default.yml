@@ -11,6 +11,7 @@ useTasks:
   - hue
 batteryTypeNames:
   unknown: 不明
+  internal: 内蔵
   aa: 単3電池
   aaa: 単4電池
   cr2: CR2

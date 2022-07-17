@@ -50,15 +50,16 @@ void Promise.allSettled(targetTasks).then(async settledResults => {
     }
 
     const sortedStatusList = taskResult.results.sort((a, b) => {
-      if (a.id > b.id) return -1;
-      if (a.id < b.id) return 1;
+      if (a.deviceName > b.deviceName) return -1;
+      if (a.deviceName < b.deviceName) return 1;
       return 0;
     });
 
     for (const status of sortedStatusList) {
       if (status.value < min && status.value >= 0) min = status.value;
       const batteryName = batteryNames[status.info.type] ?? status.info.type;
-      message += `${status.deviceName} ${status.value}% (${batteryName} ${status.info.quantity}個)\n`;
+      const qty =  status.info.quantity === 0 ? '' : ` ${status.info.quantity}個`;
+      message += `${status.deviceName} ${status.value}% (${batteryName}${qty})\n`;
     }
   }
 

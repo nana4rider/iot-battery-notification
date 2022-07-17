@@ -7,17 +7,32 @@ import { BaseTask, BatteryInfo } from './BaseTask';
 const Switchbot = require('node-switchbot');
 const logger = log4js.getLogger();
 
-type Device = {
+type Device = StandardDevice | CurtainDevice;
+
+interface StandardDevice {
   deviceId: string,
   deviceName: string,
-  deviceType: string,
+  deviceType: 'Hub Mini' | 'Meter' | 'Bot',
   enableCloudService: boolean,
   hubDeviceId: string
-};
+}
+
+interface CurtainDevice {
+  deviceId: string,
+  deviceName: string,
+  deviceType: 'Curtain',
+  enableCloudService: boolean,
+  hubDeviceId: string
+  curtainDevicesIds: string[]
+  calibrate: boolean,
+  group: boolean,
+  master: boolean
+}
 
 const batteryInfoMap: Record<string, BatteryInfo> = {
   'Bot': { type: 'cr2', quantity: 1 },
-  'Meter': { type: 'aaa', quantity: 2 }
+  'Meter': { type: 'aaa', quantity: 2 },
+  'Curtain': { type: 'internal', quantity: 0 }
 };
 
 export class SwitchBotTask extends BaseTask {
@@ -40,10 +55,21 @@ export class SwitchBotTask extends BaseTask {
     const allDevices = response.data.body.deviceList as Device[];
     const devices = allDevices.filter(device => batteryInfoMap[device.deviceType]);
 
+    devices.forEach(device => {
+      if (device.deviceType !== 'Curtain' || !device.master) return;
+      const subDeviceIds = device.curtainDevicesIds.filter(id => id !== device.deviceId);
+      devices.forEach(subDevice => {
+        if (subDeviceIds.includes(subDevice.deviceId)) {
+          subDevice.deviceName = device.deviceName + '(Sub)';
+        }
+      });
+      device.deviceName += '(Master)';
+    });
+
     await this.switchbot.startScan();
 
     this.switchbot.onadvertisement = (deviceInfo: any) => {
-      const deviceId = deviceInfo.id.toUpperCase();
+      const deviceId = deviceInfo.address.replace(/:/g, '').toUpperCase();
       for (const [index, device] of devices.entries()) {
         if (device.deviceId !== deviceId
           || deviceInfo.serviceData.battery == undefined) continue;

@@ -8,12 +8,12 @@
       "type": "node",
       "request": "launch",
       "name": "Launch JavaScript @app.js",
-      "program": "${workspaceRoot}\\dst\\app.js",
+      "program": "${workspaceRoot}/dst/app.js",
       "preLaunchTask": "tsc",
       "smartStep": true,
       "cwd": "${workspaceRoot}",
       "outputCapture": "std",
-      "envFile": "${workspaceRoot}\\.env",
+      "envFile": "${workspaceRoot}/.env",
       "env": {
         "NODE_ENV": "development"
       }
